@@ -1,15 +1,11 @@
-const URL = 'https://restcountries.com';
+const URL = 'https://restcountries.com/v3.1/name/';
 const PARAMETERS = 'name,capital,population,flags,languages';
 
-const fetchCountries = function (name) {
-  return fetch(`${URL}${name}?fields=${PARAMETERS}`).then(
-    response => {
-      if (!response.ok) {
-        throw new Error('Data fail!');
-      }
-      return response.json();
-    }
-  );
-};
-
-export { fetchCountries };
+export function fetchCountries(name) {
+  return fetch(`${URL}${name}?fields=${PARAMETERS}`).then(response => {
+    if (!response.ok) {
+    throw new Error('Data fail!');
+  }
+  return response.json();
+  });
+}

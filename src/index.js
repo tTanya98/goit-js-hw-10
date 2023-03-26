@@ -12,12 +12,12 @@ const countryInfo = document.querySelector('.country-info');
 searchField.addEventListener('input', debounce(onSearchCountry, DEBOUNCE_DELAY));
 
 function onSearchCountry(e) {
-    e.preventDefault();
+    // e.preventDefault();
     let inputCountry = e.target.value.trim();
     if(inputCountry) {
         return fetchCountries(inputCountry)
         .then(data => {
-            chooseMarkup(data);
+            choseMarkup(data);
         })
         .catch(error => {
             Notify.failure('Oops, there is no country with that name');
@@ -27,7 +27,7 @@ function onSearchCountry(e) {
     countryList.innerHTML = '';
 }
 
-function chooseMarkup(countryArray) {
+function choseMarkup(countryArray) {
     if (countryArray.length === 1) {
         countryList.innerHTML = '';
         return markupCountry(countryArray);
@@ -43,7 +43,7 @@ function markupCountryItm(data) {
     const markup = data
     .map(el => {
         return `<li class="country-list_item">
-                <img class="country-list_img" src="${el.flags.svg}" alt="${el.name.official}" />
+                <img class="country-list_img" src="${el.flags.svg}" alt="${el.name.official}" width="40" height="20" />
                 <p>${el.name.official}</p>
                 </li>`;
     })
@@ -57,7 +57,7 @@ function markupCountry(data) {
         return `<h1>
         <img class="country-list_img" 
         src="${el.flags.svg}" 
-        alt="${el.name.official}" />
+        alt="${el.name.official}" width="40" height="20" />
         ${el.name.official}
         </h1>
         <ul class="country-info_list">
